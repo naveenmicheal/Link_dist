@@ -1,0 +1,59 @@
+{%include 'layout.html'%}
+{%block content%}
+<!-- Navigation -->
+ <nav class="indigo darken-4">
+    <div class="nav-wrapper">
+      <a href="#!" style="font-family: 'Bree Serif', serif;" class="brand-logo">Link Exposer</a>
+      <a href="#" data-target="mobile_nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right  hide-on-med-and-down">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Donate</a></li>
+        <!-- <li><a href="#"></a></li> -->
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile_nav">
+    <li><a href="#">Navigation</a></li>
+    <li><a href="#">Navigation</a></li>
+    <li><a href="#">Navigation</a></li>
+    <li><a href="#">Navigation</a></li>
+  </ul>
+<!-- Navigation End -->
+
+<!-- Sectiobn -->
+<div class="box center-align">
+	<div class="heading">
+		<h1 style="font-family: 'Bree Serif'">Link Distination Exposer</h1>
+		<p>Enter the URL</p>
+	</div>
+	<div class="input ">
+		<div class="row">
+		<div class="input-field col s6">
+          <input class="center-align" id="last_name" type="text" class="validate">
+          <label style="margin-left: 49%" for="last_name">URL</label>
+        </div>
+        </div>
+	</div>
+</div>
+
+
+<style type="text/css">
+body{
+	background-color: #2f3640;
+}
+.sidenav{
+	width: 250px !important;
+}
+#last_name{
+	margin-left: 50%;
+}
+</style>
+<script type="text/javascript">
+	 document.addEventListener('DOMContentLoaded', function() {
+    var navbar = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(navbar, {});
+  });
+</script>
+{%endblock content%} 
