@@ -1,10 +1,13 @@
-from flask import Flask, url_for, render_template 
+from flask import Flask, url_for, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-	return render_template('home.html')
+	if request.method =='POST':
+		return 'ok'
+	else:	
+		return render_template('home.html')
 	
 @app.route('/about')
 def about():

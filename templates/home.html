@@ -28,6 +28,9 @@
 		<h1 style="font-family: 'Bree Serif'">Link Distination Exposer</h1>
 		<p>Enter the URL</p>
 	</div>
+  <form method="POST", action="{{url_for('home')}}">
+  
+
 	<div class="input ">
 		<div class="row">
 		<div class="input-field col s6">
@@ -36,7 +39,12 @@
         </div>
         </div>
 	</div>
+  <button class="btn waves-effect waves-light purple" type="submit">Submit
+             <i class="material-icons right">send</i>
+     </button>
 </div>
+</form>
+
 
 
 <style type="text/css">
