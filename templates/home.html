@@ -25,27 +25,36 @@
 <!-- Sectiobn -->
 <div class="box center-align">
 	<div class="heading">
-		<h1 style="font-family: 'Bree Serif'">Link Distination Exposer</h1>
+		<h1 id="headtitle" style="font-family: 'Bree Serif'">Distination Exposer</h1>
 		<p>Enter the URL</p>
 	</div>
-  <form method="POST", action="{{url_for('home')}}">
   
-
+  <form method="POST", action="{{url_for('home')}}"> 
 	<div class="input ">
 		<div class="row">
 		<div class="input-field col s6">
-          <input class="center-align" id="last_name" type="text" class="validate">
+          <input name='url' class="center-align" id="last_name" type="text" class="validate">
           <label style="margin-left: 49%" for="last_name">URL</label>
         </div>
         </div>
 	</div>
-  <button class="btn waves-effect waves-light purple" type="submit">Submit
+  <button class="btn waves-effect waves-light purple"  type="submit">Submit
              <i class="material-icons right">send</i>
      </button>
 </div>
 </form>
 
 
+<div id=resurt class='center-align'>
+  <h6 id='ans'>
+    <h3>Link information</h3>
+    <h6 style="display: inline;">Distination:</h6><span>Testing.com</span> <br>
+    <h6 style="display: inline;">Title:</h6><span>Testing.com</span><br>
+    <h6 style="display: inline;">Distination:</h6><span>Testing.com</span><br>
+    <h6 style="display: inline;">Distination:</h6><span>Testing.com</span>
+    
+  </h6>
+</div>
 
 <style type="text/css">
 body{
@@ -54,14 +63,33 @@ body{
 .sidenav{
 	width: 250px !important;
 }
+#headtitle{
+  color: white;
+  text-shadow: 2px 5px red ;
+}
 #last_name{
 	margin-left: 50%;
 }
+
 </style>
 <script type="text/javascript">
 	 document.addEventListener('DOMContentLoaded', function() {
     var navbar = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(navbar, {});
   });
+
+   //AJAX
+  // function load() {
+  // var i_url = new URL(document.URL)
+
+  // var xhttp = new XMLHttpRequest();
+  // xhttp.onreadystatechange = function() {
+  //   if (this.readyState == 4 && this.status == 200) {
+  //    document.getElementById("ans").innerHTML = this.responseText;
+  //   }
+  // };
+  // xhttp.open("GET", "http://0.0.0.0:3333/url/httpbin.org", true);
+  // xhttp.send();
+//}
 </script>
 {%endblock content%} 
