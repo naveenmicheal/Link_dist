@@ -2,9 +2,7 @@
 {%block content%}
 <!-- Navigation -->
 <!-- JSON -->
-<script type="text/javascript">
-  var data = JSON.parse('{{ data | tojson | safe}}');
-</script>
+
  <nav class="indigo darken-4">
     <div class="nav-wrapper">
       <a href="#!" style="font-family: 'Bree Serif', serif;" class="brand-logo">Link Exposer</a>
@@ -56,8 +54,15 @@
     margin-right: 300px;
     margin-left: 300px;
   } 
-
-
+#last_name{
+  margin-left: 50%;
+}
+/*For Input focus style*/
+#last_name:focus{
+  border: 1px solid indigo;
+  background-color: black;
+  color: white;
+}
 
  
   #heading h6{
@@ -96,8 +101,9 @@
     background-color: #9b59b6;
   }
 }
-</style>
 
+</style>
+{%if d_url%}
 <div id="result" class='center-align'>
   <div id="heading">
       <h6>Link Information</h6>
@@ -111,18 +117,19 @@
       https:/dsfdsfjdsfjodsjfjdsfjoj
     </a></p>
   </div> -->
+  
   <table>
 
         <tbody>
           <tr>
             <td><b>Destination</b></td>
-            <td>data.title</td>
+            <td>{{d_url}}</td>
            <!--  <td>Title</td>
             <td>hof</td> -->
           </tr>
           <tr>
             <td><b>Redirection</b></td>
-            <td>3 
+            <td> {{count}}
                <button style="margin-left: 10px" data-target="modal1" class=" btn-small btn modal-trigger">View Redircts</button>
             </td>
            <!--  <td>Title</td>
@@ -130,7 +137,7 @@
           </tr>
           <tr>
             <td><b>Title</b></td>
-            <td  >This is very long title</td>
+            <td>{{title}}</td>
             <!-- <td>Jellybean</td>
             <td>$3.76</td> -->
           </tr>
@@ -139,9 +146,9 @@
             </td>
 
              <td >
-              <span class="chk"><a href="#">Google Safe</a></span>
-              <span class="chk"><a href="#">Nortan</a></span>
-              <span class="chk"><a href="#">Web of trust</a></span>
+              <span class="chk"><a href="{{google_url}}" target="_blank ">Google Safe</a></span>
+              <span class="chk"><a href="{{nortan}}" target="_blank " >Nortan</a></span>
+              <span class="chk"><a href="{{nortan}}" target="_blank " >Web of trust</a></span>
              <!--  <span class="chk"><a href="#">Whois</a></span>
               <span class="chk"><a href="#">Virustotal</a></span> -->
 
@@ -152,26 +159,28 @@
              <td class="center-align"><a href="#">Nortan URL scan</a> -->
               <td><b>More on</b></td>
              <td>
-              <span class="chk"><a href="#">Virus Total</a></span>
-              <span class="chk"><a href="#">Who is</a></span>
-              <span class="chk"><a href="#">Site Advisor</a></span>
-             <!--  <span class="chk"><a href="#">Whois</a></span>
-              <span class="chk"><a href="#">Virustotal</a></span> -->
+              <span class="chk"><a href="https://www.virustotal.com/gui/home/url" target="_blank">Virus Total</a></span>
+              <span class="chk"><a href="#" target="_blank">Who is</a></span>
+              <span class="chk"><a href="#" target="_blank">Site Advisor</a></span>
+            
 
             </td>
           </tr>
         </tbody>
       </table>
-        
+      {%endif%}  
 </div>
 
 <!-- MODELS -->
  <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>https://google.com/r1 status=304</p>
-      <p>https://google.com/r2 status=304</p>
-      <p>https://google.com/r3 status=200</p>
+      <h4>Redirects Path</h4>
+      {%if count%}
+      {%for c in range(count)%}
+      <p>{{r_url[c]}}</p>
+      {%endfor%}
+      {%endif%}
+
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -192,9 +201,7 @@ body{
   color: white;
   text-shadow: 2px 5px red ;
 }
-#last_name{
-	margin-left: 50%;
-}
+
 
 </style>
 <script type="text/javascript">

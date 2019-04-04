@@ -1,6 +1,7 @@
-from flask import Flask, url_for, render_template, request
+from flask import Flask, url_for, render_template, request, jsonify
 import requests as rq
 from bs4 import BeautifulSoup
+import json
 
 app = Flask(__name__)
 
@@ -10,26 +11,33 @@ def home():
 		i_url = request.form.get('url')
 		rs = rq.get(i_url)
 		d_url = rs.url
+		count = 0
+		for c in rs.history:
+			count = count + 1
+		r_url = []	
+		for c in range(count):
+			r_url.append(rs.history[c].url)
+
 		soup = BeautifulSoup(rs.content,'html.parser')
 		soup.prettify()
-		data = {
-		'title':soup.title.string,
-		'google_url':("""https://transparencyreport.google.com
-			/safe-browsing/search?url={}""".format(d_url)),
-		'norton' :("https://safeweb.norton.com/report/show?url={}".format(d_url)),
-		'wot' :("https://www.mywot.com/en/scorecard/{}".format(d_url))
-		}
 
-		# title = soup.title.string
-		# google_url = ("""https://transparencyreport.google.com
-		# 	/safe-browsing/search?url={}""".format(d_url))
-		# nortan =("https://safeweb.norton.com/report/show?url={}".format(d_url))
-		# wot =("https://www.mywot.com/en/scorecard/{}".format(d_url))
-		print(" \n\n\n\n ############ DATA ################# \n\n\n")
+		title = soup.title.string
+		google_url = ("""https://transparencyreport.google.com
+			/safe-browsing/search?url={}""".format(d_url))
+
+		nortan =("https://safeweb.norton.com/report/show?url={}".format(d_url))
+
+		wot =("https://www.mywot.com/en/scorecard/{}".format(d_url))
+		print(r_url)
+		# print(" \n\n\n\n ############ DATA ################# \n\n\n")
+		# print(type(data))
+		# print('\n\n')
+		# print(data)
 		# print(d_url)
 		# print(title)
 		
-		return render_template('home.html', data=data)
+		return render_template('home.html', d_url=d_url,count=count, 
+			r_url =r_url, title=title,google_url=google_url,nortan=nortan,wot=wot )
 	else:	
 		return render_template('home.html')
 # @app.route('/url/<string:iurl>')
