@@ -9,7 +9,12 @@ app = Flask(__name__)
 def home():
 	if request.method =='POST':
 		i_url = request.form.get('url')
-		rs = rq.get(i_url)
+		if i_url =='':
+			return render_template('home.html')
+		try:
+			rs = rq.get(i_url)
+		except:
+			return render_template('home.html',msg = 'URL IS NOT VALID Or Down URL should start with http:// or https://')
 		d_url = rs.url
 		count = 0
 		redirct_count = len(rs.history)
@@ -21,6 +26,7 @@ def home():
 				count = count + 1
 		print(count)
 		r_url = []	
+		
 		for c in range(count):
 			r_url.append(rs.history[c].url)
 		r_url.append(d_url)
