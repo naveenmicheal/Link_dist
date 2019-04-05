@@ -129,11 +129,46 @@
           </tr>
           <tr>
             <td><b>Redirection</b></td>
-            <td> {{count}}
-               <button style="margin-left: 10px" data-target="modal1" class=" btn-small btn modal-trigger">View Redircts</button>
+            <td id="count"> {{count}}
+              <div style="display: none" id="path">
+              <ol>
+                {%for count in r_url%}
+                  <p>{{r_url[count]}}</p>
+              {%endfor%}
+              </ol>
+              </div>
+               <button id="showbtn" style="margin-left: 10px" class=" btn-small blue" onclick="show()">View Redircts</button> 
+               <button id="closebtn" style="margin-left: 10px;display: none; " class=" red btn-small"
+                onclick="closepage()">
+                 Close Redirects
+               </button>
             </td>
-           <!--  <td>Title</td>
-            <td>hof</td> -->
+           <script type="text/javascript">
+             var a = document.getElementById('count').innerText;
+             if(a =="0 VIEW REDIRCTS"){
+              console.log("NO Redirection");
+              document.getElementById('count').innerHTML = "<td>No Redirection</td>";
+             }
+             function show(){
+             var path = document.getElementById('path');
+             path.style.display ='block';
+             var showbtn = document.getElementById('showbtn');
+             showbtn.style.display='none';
+             var close = document.getElementById('closebtn');
+             close.style.display ='block';
+
+           }
+
+           function closepage(){
+            console.log('Close fun')
+            var path = document.getElementById('path');
+            showbtn.style.display='inline';
+            path.style.display ='none';
+            var close = document.getElementById('closebtn');
+            close.style.display ='none';
+            
+           }
+           </script>
           </tr>
           <tr>
             <td><b>Title</b></td>
@@ -146,9 +181,9 @@
             </td>
 
              <td >
-              <span class="chk"><a href="{{google_url}}" target="_blank ">Google Safe</a></span>
-              <span class="chk"><a href="{{nortan}}" target="_blank " >Nortan</a></span>
-              <span class="chk"><a href="{{nortan}}" target="_blank " >Web of trust</a></span>
+              <span class="chk"><a href="{{google_url}}" target="_blank">Google Safe</a></span>
+              <span class="chk"><a href="{{nortan}}" target="_blank">Nortan</a></span>
+              <span class="chk"><a href="{{wot}}" target="_blank">Web of trust</a></span>
              <!--  <span class="chk"><a href="#">Whois</a></span>
               <span class="chk"><a href="#">Virustotal</a></span> -->
 
@@ -159,9 +194,9 @@
              <td class="center-align"><a href="#">Nortan URL scan</a> -->
               <td><b>More on</b></td>
              <td>
-              <span class="chk"><a href="https://www.virustotal.com/gui/home/url" target="_blank">Virus Total</a></span>
-              <span class="chk"><a href="#" target="_blank">Who is</a></span>
-              <span class="chk"><a href="#" target="_blank">Site Advisor</a></span>
+              <span class="chk"><a href="https://www.virustotal.com/gui/home/url" target="_blank">Virus - Total</a></span>
+              <span class="chk"><a href="https://whois.net/" target="_blank">Who-is</a></span>
+              <span class="chk"><a href="https://sitecheck.sucuri.net/results/{{d_url}}" target="_blank">sucuri scanner</a></span>
             
 
             </td>
@@ -177,8 +212,11 @@
       <h4>Redirects Path</h4>
       {%if count%}
       {%for c in range(count)%}
-      <p>{{r_url[c]}}</p>
+
+      <p>{{r_url[c]}} <span style="margin-left: 7px; font-family:Courier New;"></span><b>Status Code: 301 </b></p>
+
       {%endfor%}
+      <p>{{d_url}} <span style="margin-left: 7px;"><b>Status-code 200</b></span></p>
       {%endif%}
 
     </div>

@@ -12,11 +12,18 @@ def home():
 		rs = rq.get(i_url)
 		d_url = rs.url
 		count = 0
-		for c in rs.history:
-			count = count + 1
+		redirct_count = len(rs.history)
+
+		if redirct_count ==1:
+			count = 0
+		else:	
+			for c in rs.history:
+				count = count + 1
+		print(count)
 		r_url = []	
 		for c in range(count):
 			r_url.append(rs.history[c].url)
+		r_url.append(d_url)
 
 		soup = BeautifulSoup(rs.content,'html.parser')
 		soup.prettify()
