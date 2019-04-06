@@ -10,6 +10,33 @@
 </head>
 <body>
 {%block content%}
+<!-- NAVIGATION -->
+<nav class="indigo darken-4">
+    <div class="nav-wrapper">
+      <a href="{{url_for('home')}}" style="font-family: 'Bree Serif', serif;" class="brand-logo">Link Exposer</a>
+      <a href="#" data-target="mobile_nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right  hide-on-med-and-down">
+        <li><a href="{{url_for('about')}}">About</a></li>
+        <li><a href="{{url_for('info')}}">Info</a></li>
+        <li><a href="{{url_for('donate')}}">Donate</a></li>
+        <!-- <li><a href="#"></a></li> -->
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile_nav">
+    <li><a href="{{url_for('about')}}">About</a></li>
+    <li><a href="{{url_for('info')}}">Info</a></li>
+    <li><a href="{{url_for('donate')}}">Donate</a></li>
+  </ul>
+  <script type="text/javascript">
+  	document.addEventListener('DOMContentLoaded', function() {
+    var navbar = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(navbar, {});
+  });
+
+  </script>
+  <!-- END NAVBAR -->
 {%endblock content%}
 </body>
 <script type="text/javascript" src="{{url_for('static', filename='materialize.min.js')}}"></script>

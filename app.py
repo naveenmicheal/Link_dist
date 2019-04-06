@@ -70,11 +70,17 @@ def home():
 
 @app.route('/about')
 def about():
-	return '<h3>Hello World</h3>'
+	return render_template('about.html')
 
+@app.route('/donate')
+def donate():
+	return render_template('donate.html')
 
+@app.route('/info')
+def info():
+	return render_template('info.html')
 if __name__ =='__main__':
 	
-	app.run(host='0.0.0.0', debug=True)	
+	app.run()	
 	
 
