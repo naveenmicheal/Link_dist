@@ -1,9 +1,12 @@
 from flask import Flask, url_for, render_template, request, jsonify
 import requests as rq
 from bs4 import BeautifulSoup
-import json
+import time
 
 app = Flask(__name__)
+
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -24,16 +27,18 @@ def home():
 		else:	
 			for c in rs.history:
 				count = count + 1
-		print(count)
+		# print(count)
 		r_url = []	
 		
 		for c in range(count):
 			r_url.append(rs.history[c].url)
 		r_url.append(d_url)
+		# print(r_url)
+		# print('Length:======= {}'.format(len(r_url)))
 
 		soup = BeautifulSoup(rs.content,'html.parser')
 		soup.prettify()
-
+		data ={'title1': soup.title.string}
 		title = soup.title.string
 		google_url = ("""https://transparencyreport.google.com
 			/safe-browsing/search?url={}""".format(d_url))
@@ -41,15 +46,15 @@ def home():
 		nortan =("https://safeweb.norton.com/report/show?url={}".format(d_url))
 
 		wot =("https://www.mywot.com/en/scorecard/{}".format(d_url))
-		print(r_url)
+		# print(r_url)
 		# print(" \n\n\n\n ############ DATA ################# \n\n\n")
 		# print(type(data))
 		# print('\n\n')
 		# print(data)
 		# print(d_url)
 		# print(title)
-		
-		return render_template('home.html', d_url=d_url,count=count, 
+		print('############## COUNT {}'.format(count))
+		return render_template('home.html', d_url=d_url,count= count , 
 			r_url =r_url, title=title,google_url=google_url,nortan=nortan,wot=wot )
 	else:	
 		return render_template('home.html')
@@ -69,4 +74,7 @@ def about():
 
 
 if __name__ =='__main__':
-	app.run(debug=True, host='0.0.0.0', port=3333)	
+	
+	app.run(host='0.0.0.0', debug=True)	
+	
+

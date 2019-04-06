@@ -50,6 +50,7 @@
      </button>
 </div>
 </form>
+
 <style type="text/css">
    #result{
     margin-top: 20px;
@@ -58,10 +59,23 @@
     color: white;
     margin-right: 300px;
     margin-left: 300px;
+    
+
   } 
-#last_name{
-  width: 40%;
-}
+  /*word-wrap: all !important;
+    word-break: break-all !important;*/
+ span{
+    background-color: red
+    border-radius:3px;
+
+  }
+  /*p{*/
+  /*  word-break: break-all !important;
+    word-wrap:break-word !important;
+  */}
+#/*last_name{
+  width: 40% !important;
+}*/
 label{
   margin-left: 30% !important;
 }
@@ -95,6 +109,9 @@ label{
     border-radius: 3px;
     background-color: #9b59b6;
   }
+  span{
+
+  }
    @media only screen and (max-width: 600px) {
    #result{
     margin-right: 5px;
@@ -104,15 +121,21 @@ label{
     font-size: 40px;
 
    }
+   /*p{
+    max-width:  600px;
+    word-wrap: all !important;
+    word-break: break-all !important;
+   }*/
   input{
     width: 80% !important;
    }
    label{
   margin-left: 10% !important;
   }
-   #destination{
+  
+   /*#destination{
     word-wrap: anywhere !important; 
-   }
+   }*/
     .chk{
     padding: 1px;
 
@@ -147,25 +170,27 @@ label{
         <tbody>
           <tr>
             <td><b>Destination</b></td>
-            <td id="destination">{{d_url}}</td>
+            <td id="destination"> <p>{{d_url}}</p></td>
            <!--  <td>Title</td>
             <td>hof</td> -->
           </tr>
+      
           <tr>
             <td><b>Redirection</b></td>
             <td id="count"> {{count}}
               <div style="display: none" id="path">
-              <ol>
+              <!-- <ol> -->
                 {%for count in range(count) %}
-                  <p style=" word-wrap: anywhere !important; "> {{r_url[count]}}</p>
+                  <p> {{r_url[count]}} <span class="pathr" style="background-color:red !important ;color: white; padding: 3px; margin-left: 2px; border-radius: 3px">302</span></p>
 
               {%endfor%}
-              </ol>
+              <p>{{d_url}}<span style="background-color: #2ecc71 !important;color: white; padding: 3px; border-radius: 3px;margin-left: 2px">200</span></p>
+              <!-- </ol> -->
               </div>
-               <button id="showbtn" style="margin-left: 10px" class=" btn-small blue" onclick="show()">View Redircts</button> 
+               <button id="showbtn" style="margin-left: 10px" class=" btn-small  green darken-2" onclick="show()">View Redircts</button> 
                <button id="closebtn" style="margin-left: 10px;display: none; " class=" red btn-small"
                 onclick="closepage()">
-                 Close Redirects
+                 Close
                </button>
             </td>
            <script type="text/javascript">
@@ -239,16 +264,14 @@ label{
       {%if count%}
       {%for c in range(count)%}
 
-      <p>{{r_url[c]}} <span style="margin-left: 7px; font-family:Courier New;"></span><b>Status Code: 301 </b></p>
+      <p>{{r_url[c]}} <span style="margin-left: 7px; font-family:Courier New;"></span><b> 301 </b></p>
 
       {%endfor%}
-      <p>{{d_url}} <span style="margin-left: 7px;"><b>Status-code 200</b></span></p>
+      <p>{{d_url}} <span style="margin-left: 7px;"><b>200</b></span></p>
       {%endif%}
 
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
+    
   </div>
 
   <br><br>
@@ -264,6 +287,25 @@ body{
 #headtitle{
   color: white;
   text-shadow: 2px 2px #1B9CFC ;
+}
+
+@media only screen and (min-width: 768px) {
+input[type=url]:not(.browser-default){
+  width: 60% !important;
+}
+label{
+  margin-left: 20%
+}
+}
+
+
+/*MOBILE*/
+@media only screen and (max-width: 600px) {
+  p{
+    word-wrap: all !important;
+     word-break: break-all !important;
+  }
+  
 }
 
 
